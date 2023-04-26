@@ -16,11 +16,12 @@ algae_count <- tribble(
   1,            53,         8,              7,
   2,            18,         7,              5,
   3,            16,         4,              10
-)
+) %>%
+  select(true_reef, mound_bioherm, biostrome) #too lazy to edit tibble input
 ```
 
 ## Test
 
 ```{r}
-chisq.test(algae_count)
+chisq.test(algae_count, correct = FALSE)
 ```
