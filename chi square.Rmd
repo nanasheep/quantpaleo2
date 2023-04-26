@@ -1,0 +1,26 @@
+---
+title: "chi square"
+output: html_document
+date: "2023-04-26"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+## Data
+From Weiss and Martindale S3 A
+```{r}
+algae_count <- tribble(
+  ~algae_score, ~true_reef, ~mound_bioherm, ~biostrome,
+  1,            53,         8,              7,
+  2,            18,         7,              5,
+  3,            16,         4,              10
+)
+```
+
+## Test
+
+```{r}
+chisq.test(algae_count)
+```
