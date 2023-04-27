@@ -26,7 +26,7 @@ Weiss and Martindale S1 Database
 database <- readxl::read_xls("S1 Database.xls")
 ```
 
+## Test
 ```{r}
-cleaned <- database %>%
-  select(Algae_score, Dweller_diversity)
+kruskal.test(x = database$Dweller_diversity, g = database$Algae_score)
 ```
