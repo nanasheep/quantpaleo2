@@ -28,5 +28,6 @@ database <- readxl::read_xls("S1 Database.xls")
 
 ## Test
 ```{r}
-model <- lm(data = database, formula = Dweller_diversity ~ Algae_score)
+model <- glm(data = database, formula = Dweller_diversity ~ Algae_score, family = poisson)
+model
 ```
