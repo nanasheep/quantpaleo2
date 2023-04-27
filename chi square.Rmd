@@ -11,7 +11,7 @@ library(tidyverse)
 ## Data
 From Weiss and Martindale S3 A
 ```{r}
-algae_count <- tribble(
+algae_count <- tribble( #create data table
   ~algae_score, ~true_reef, ~mound_bioherm, ~biostrome,
   1,            53,         8,              7,
   2,            18,         7,              5,
@@ -23,5 +23,9 @@ algae_count <- tribble(
 ## Test
 
 ```{r}
-chisq.test(algae_count, correct = FALSE)
+chisq <- chisq.test(algae_count, correct = FALSE) #chi square test
+
+chisq #print results
+
+chisq$expected #print expected values
 ```
