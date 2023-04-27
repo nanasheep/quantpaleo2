@@ -11,27 +11,25 @@ library(PMCMRplus)
 ```
 
 ## Data
-From Weiss and Martindale S3 A
-```{r}
-algae_count <- tribble( #create data table
-  ~algae_score, ~true_reef, ~mound_bioherm, ~biostrome,
-  1,            53,         8,              7,
-  2,            18,         7,              5,
-  3,            16,         4,              10
-) %>%
-  select(true_reef, mound_bioherm, biostrome) #too lazy to edit tibble input
-```
-
 Weiss and Martindale S1 Database
 ```{r}
 database <- readxl::read_xls("S1 Database.xls")
 ```
 
-## Test
+## Dweller Test
 ```{r kruskal-wallis}
 kruskal.test(x = database$Dweller_diversity, g = database$Algae_score)
 ```
 
 ```{r nemenyi}
 kwAllPairsNemenyiTest(x = database$Dweller_diversity, g = database$Algae_score)
+```
+
+## Coral Test
+```{r kruskal-wallis}
+kruskal.test(x = database$Coral_diversity, g = database$Algae_score)
+```
+
+```{r nemenyi}
+kwAllPairsNemenyiTest(x = database$Coral_diversity, g = database$Algae_score)
 ```
