@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(PMCMRplus)
 ```
 
 ## Data
@@ -27,6 +28,10 @@ database <- readxl::read_xls("S1 Database.xls")
 ```
 
 ## Test
-```{r}
+```{r kruskal-wallis}
 kruskal.test(x = database$Dweller_diversity, g = database$Algae_score)
+```
+
+```{r nemenyi}
+kwAllPairsNemenyiTest(x = database$Dweller_diversity, g = database$Algae_score)
 ```
