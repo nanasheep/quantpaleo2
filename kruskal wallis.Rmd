@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(PMCMRplus)
+library(modelr)
 ```
 
 ## Data
@@ -25,11 +26,6 @@ kruskal.test(x = database$Dweller_diversity, g = database$Algae_score)
 kwAllPairsNemenyiTest(x = database$Dweller_diversity, g = database$Algae_score)
 ```
 
-## Coral Test
-```{r kruskal-wallis}
-kruskal.test(x = database$Coral_diversity, g = database$Algae_score)
-```
-
-```{r nemenyi}
-kwAllPairsNemenyiTest(x = database$Coral_diversity, g = database$Algae_score)
+```{r}
+resampled_data <- as.data.frame(resample(data = database, idx = 1:100))
 ```
