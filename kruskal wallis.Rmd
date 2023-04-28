@@ -27,5 +27,18 @@ kwAllPairsNemenyiTest(x = database$Dweller_diversity, g = database$Algae_score)
 ```
 
 ```{r}
-resampled_data <- as.data.frame(resample(data = database, idx = 1:100))
+datakw <- matrix(nrow = 1000, ncol = 3)
+database2 <- database %>%
+  mutate(index = 1:nrow(database))
+
+for (i in 1:1000) {
+ resampled_id <- sample(database2$index, size = 100, replace = FALSE)
+ resampled_data <- database2 %>%
+   filter(index %in% resampled_id)
+ kw <- kruskal.test(x = resampled_data$Dweller_diversity, g = resampled_data$Algae_score)
+ datakw[i,1] <- kw$statistic
+ datakw[i,2] <- kw$parameter
+ datakw[i,3] <- kw$p.value
+}
+colnames(datakw) <- c("Kruskal-Wallis_Chi_Squared", "df", "p-value")
 ```
