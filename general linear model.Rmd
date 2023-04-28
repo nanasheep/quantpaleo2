@@ -7,18 +7,19 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(mvabund)
+library(sasLM)
 ```
 
 ## Data
-From Weiss and Martindale S3 A
+
 ```{r}
 algae_count <- tribble( #create data table
   ~algae_score, ~true_reef, ~mound_bioherm, ~biostrome,
   1,            53,         8,              7,
   2,            18,         7,              5,
   3,            16,         4,              10
-) #%>%
-  #select(true_reef, mound_bioherm, biostrome) #too lazy to edit tibble input
+) 
 ```
 
 Weiss and Martindale S1 Database
@@ -28,6 +29,7 @@ database <- readxl::read_xls("S1 Database.xls")
 
 ## Test
 ```{r}
-model <- lm(data = database, formula = Dweller_diversity ~ Algae_score, family = poisson)
+model <- glm(formula = Dweller_diversity ~ Algae_score, family = "quasipoisson", data = database)
 model
+summary(model)
 ```
